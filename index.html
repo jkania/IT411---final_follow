@@ -1,0 +1,53 @@
+<!doctype html>
+<head>
+    <title>IT 411 - Jennifer Kania - FINAL EXAM - Follow the mouse v2</title>
+    <link href="stylesheets/main.css" rel="stylesheet">
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script>
+        $(function() {
+             //var i = true;
+             var clickedImage;
+             var initialX;
+             var initialY;
+             $('.image').click(function (e){
+                 initialX = e.pageX;
+                 initialY = e.pageY;
+                 $(this).addClass('selected');
+                 clickedImage = this;
+                 e.stopPropagation();
+             });
+            
+             //when we click we want to capture x, y coord's 
+             $(document).on('click', function (event) {
+                var valPageX = event.pageX;
+                var valPageY = event.pageY;
+                var distanceX = valPageX - initialX;
+                var distanceY = valPageY - initialY;
+                 if ($(clickedImage).hasClass('selected')) {
+                     $(clickedImage).offset({
+                         top: valPageY,
+                         left: valPageX
+         });
+                     $('#imagedistance').html("Distance from origin: " + distanceX + ", " + distanceY);
+                     }
+
+     });
+
+ });
+            
+    </script>
+</head>
+<body>
+    
+<h1>Select an image to follow the mouse, then click anywhere else on the page:</h1>
+<div id="imagedistance">Distance from origin:</div>
+<img class="image" src="images/slide4.jpg" />
+<img class="image" img src="images/slide3.jpg" />
+<img class="image" img src="images/slide5.jpg" />
+
+    <div class="footer">
+    <p>Created by Jennifer Kania</p>
+  </div>
+</body>
+
+</html>
